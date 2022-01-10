@@ -186,40 +186,8 @@ while True:
             break
         else:
             print("That's not a valid option")
-    # elif move[1] in rooms[currentRoom] and 'key' not in inventory:
-    #         print("<ERROR!> You need the key to unlock the door! Try typing 'get key' to get the key")
-    #         input("Press Enter to try again")
-    #         clearScreen()
-        # there is no door (link) to the new room
 
-
-    # if they type 'get' first
-    # if move[0] == 'get':
-    #     # if the room contains an item, and the item is the one they want to get
-    #     if "item" in rooms[currentRoom] and move[1] in rooms[currentRoom]['item']:
-    #         # add the item to their inventory
-    #         inventory += [move[1]]
-    #         # display a helpful message
-    #         print(move[1] + ' got!')
-    #         # delete the item from the room
-    #         del rooms[currentRoom]['item']
-    #         clearScreen()
-    #     # otherwise, if the item isn't there to get
-    #     else:
-    #         # tell them they can't get it
-    #         print('Can\'t get ' + move[1] + '!')
-        # if currentRoom == 'Basement' and 'key' in inventory:
-        #     typingPrint("You insert the key into the door and slowly turn the key."
-        #                 "<CLICK>"
-        #                 "The key unlocks the door and you slowly open the door.")
-        #     break
-        #
-        # else:
-        #     print("ERROR! You need the key to unlock the door! Try typing 'get key' to get the key")
-
-
-
-# loop until player has bat, poison ivy, and silver coin. Then enters kitchen to perform spell.
+    # loop until player has bat, poison ivy, silver coin and matches. Then enters kitchen to perform spell.
 while True:
     clearScreen()
     showStatus()
@@ -262,9 +230,10 @@ while True:
             # add the item to their inventory
             inventory += [move[1]]
             # display a helpful message
-            print(move[1] + ' got!')
+            print("Picked up the "+move[1]+"!" )
             # delete the item from the room
             del rooms[currentRoom]['item']
+            input("<Press enter to continue>")
             clearScreen()
         # otherwise, if the item isn't there to get
         else:
@@ -275,5 +244,6 @@ while True:
     ## Define how a player can win
     if currentRoom == 'Kitchen' and 'poison ivy leaf' in inventory and 'dead bat' in inventory and 'silver coin' in inventory and 'matches' in inventory:
         EndingText()
+        input("<Press enter to Exit>")
         break
 

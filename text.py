@@ -6,7 +6,7 @@ def typingPrint(text):
     for char in text:
         sys.stdout.write(char)
         sys.stdout.flush()
-        sleep(0)
+        sleep(0.03)
 
 def IntroText():
     typingPrint("""
