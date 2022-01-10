@@ -4,7 +4,7 @@
 from PIL import Image, ImageFont, ImageDraw
 import sys, os
 from time import sleep
-from text import IntroText
+from RPG_project.text import IntroText
 ShowText = 'PYTHON RPG'
 def MainMenuImage():
     ShowText= 'PYTHON RPG'
