@@ -1,0 +1,28 @@
+“Your eyes open.”
+“As your vision begins to focus, you are laying in a dark, musky room.”
+“You sit up and realize you are in what appears to be a basement."
+"The only light in the room is the moonlight peering through a tiny window with metal bars."
+“You see a body lying on the floor across the room from you"
+"Suddenly you hear the body let out a low, raspy moan.”
+“You get up, shake out the feeling of fatigue, and begin to look around.”
+“To your left, you see a set of stairs leading up to a door."
+"You make your way slowly up the stairs and try the doorknob.”
+“<The door is locked>”
+“You start to turn around to head back down the stairs."
+"Suddenly, you hear an extremely loud, very high pitch shriek “Hahehehehe”.”
+“You sprint down the stairs and you notice that the body that was lying on the floor is now sitting up."
+"It is an older man with grey, shaggy hair that is sitting with his knees to his chest."
+"The old man is slowly rocking back and forth, staring blankly ahead.”
+“He slowly mumbles; “That’s the Witch. I’ve been here for weeks. She’ll never let us go.”
+“You begin to frantically search the room. You don’t find anything."
+"You notice the old man slowly raise his hand and point to the corner of the room.”
+“There sits a small table with a very old book and a key sitting in front of it.”
+“You walk to the book and try to read, but notice the language is one that you do not recognize.”
+“However, you notice there are notes scribbled to the side in English:"
+“To banish a Witch, you need the following ingredients;"
+"1.) Fur of a bat, 2.) Something made of silver, 3.) Leaf of a poison ivy plant.”
+"Combine these ingredients into a bowl and set on fire, and the Witch shall be banished.”
+“As you finish reading these words, you hear the old man say;"
+“If you pick up that key, you’ll be able to unlock the door."
+"The man continues;"Just beware of the Witch. If she finds you, she’ll bring you straight back to the basement.""
+“With these words in mind, your journey begins.”
