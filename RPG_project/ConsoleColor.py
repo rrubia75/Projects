@@ -8,7 +8,6 @@ class Color:
     MAGENTA = "\u001b[35m"
     CYAN = "\u001b[36m"
     WHITE = "\u001b[37m"
-    RED_BACKGROUND= "\u001b[41m"
 
 def text(string, Color):
     return Color + string + resetColor()

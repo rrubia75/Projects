@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """Author: Ryan Rubia :: Purpose: RPG game project"""
 
-# from PIL import Image, ImageFont, ImageDraw
 import sys
 import os
 from time import sleep
@@ -11,10 +10,11 @@ import shutil
 from ConsoleColor import Color
 import ConsoleColor
 
+
 def DisplayGameLogo():
     with open("StartMenuImage2.txt") as file:
-        data= file.read().splitlines()
-        borderWidth= len(data[1]) + 5
+        data = file.read().splitlines()
+        borderWidth = len(data[1]) + 5
 
         print(ConsoleColor.text(("*" * borderWidth).center(CONSOLE_WIDTH), Color.RED))
 
@@ -26,7 +26,7 @@ def DisplayGameLogo():
 
 def EndingImage():
     with open("EndingImage.txt") as file:
-        data= file.read().splitlines()
+        data = file.read().splitlines()
         for line in data:
             print(ConsoleColor.text((line.center(CONSOLE_WIDTH)), Color.RED))
 
@@ -36,21 +36,22 @@ def showInstructions():
     clearScreen()
     print()
     print()
-    print("\n+--------------------------------------+")
-    typingPrint(' To Win: Escape the house. Good luck!  \n')
-    typingPrint(ConsoleColor.text(('       BEWARE OF THE WITCH!'), Color.RED))
-    sleep(0.5)
-    print("\n+--------------------------------------+")
-    input("Press Enter to continue!")
+    print(ConsoleColor.text(("\n+--------------------------------------+"), Color.RED))
+    typingPrint('    To Win: Escape the house. \n')
+    typingPrint(ConsoleColor.text(('       BEWARE OF THE WITCH!\n'), Color.RED))
+    typingPrint2('           Good luck...')
+    sleep(0.3)
+    print(ConsoleColor.text(("\n+--------------------------------------+"), Color.RED))
+    GetPlayerName()
     clearScreen()
 
 
 def showStatus():
     # print the player's current status
     print(ConsoleColor.text(("+--------------------------------+"), Color.RED))
-    print(ConsoleColor.text(('You are in the ' + currentRoom), Color.BOLD))
+    print(ConsoleColor.text((playername+' is in the ' + currentRoom), Color.BOLD))
     # print the current inventory
-    print(ConsoleColor.text(('Pockets : ' + str(inventory)), Color.RED))
+    print(ConsoleColor.text((playername + "'s Pockets : " + str(inventory)), Color.RED))
     # print an item if there is one
     if "item" in rooms[currentRoom]:
         print(ConsoleColor.text(('You see a ' + rooms[currentRoom]['item']), Color.BOLD))
@@ -64,7 +65,7 @@ def nextMove():
         print(ConsoleColor.text(("Upstairs to the Attic, \n"
               "East to the Dining Room, \n"
               "South to the Kitchen, \n"
-              "West to the Living Room \n"), Color.RED))
+              "West to the Living Room "), Color.RED))
     elif currentRoom == "Kitchen":
         print(ConsoleColor.text(("North to the Hall \n"
               "Downstairs to the Basement"), Color.RED))
@@ -90,6 +91,13 @@ def typingPrint(text):
         sleep(0.05)
 
 
+def typingPrint2(text):
+    for char in text:
+        sys.stdout.write(char)
+        sys.stdout.flush()
+        sleep(0.2)
+
+
 #This is for clearing the screen after input
 def clearScreen():
     if sys.platform == "win32":
@@ -97,7 +105,7 @@ def clearScreen():
     else:
         os.system('clear')
 
-mylist=['Living Room', 'Dining Room' , 'Garden' , 'Attic']
+mylist=['Living Room', 'Dining Room' , 'Garden' , 'Attic', 'Hall']
 
 
 def Witch():
@@ -137,11 +145,19 @@ def print_center(s):
 def getinput():
     playerinput = input("> ").upper()
     return playerinput
+def GetPlayerName():
+    global playername
+    print("What is your name?")
+    playername= input("> ").capitalize()
 
 
+# used for getting console width to center text
 CONSOLE_WIDTH= os.get_terminal_size().columns
+
 GAME_OVER = False
+# options list for main menu
 main_menu_options = ["PLAY", "QUIT"]
+# gets random room for the witch
 RandomRoom = random.choice(mylist)
 
 while GAME_OVER == False:
@@ -186,9 +202,9 @@ while GAME_OVER == False:
         }
 
 
+        global playername
         currentRoom = 'Basement'
         inventory= []
-        # MainMenuImage()
         clearScreen()
         IntroText()
         input("\n<Press enter to continue>")
@@ -216,7 +232,7 @@ while GAME_OVER == False:
                     inventory += [move[1]]
                     clearScreen()
                     # display a helpful message
-                    print("Picked up the "+move[1]+"!" )
+                    print(ConsoleColor.text(("Picked up the "+move[1]+"!" ), Color.BOLD))
                     # delete the item from the room
                     del rooms[currentRoom]['item']
                     input("<Press enter to continue>")
@@ -233,13 +249,13 @@ while GAME_OVER == False:
                 clearScreen()
                 continue
 
-            # if they type 'go' first
+
             if move[0] == 'go' and 'key' in inventory:
                 # check that they are allowed wherever they want to go
                 if move[1] in rooms[currentRoom]:
                     clearScreen()
                     currentRoom = rooms[currentRoom][move[1]]
-                    print("You are now in the "+currentRoom+"!")
+                    print(playername +"is now in the "+currentRoom+"!")
                     input("<Press enter to continue>")
                     clearScreen()
                     break
@@ -252,10 +268,7 @@ while GAME_OVER == False:
             clearScreen()
             showStatus()
             nextMove()
-            # get the player's next 'move'
-            # .split() breaks it up into a list array
-            # eg typing 'go east' would give the list:
-            # ['go','east']
+
             move = ''
             while move == '':
                 move = input(ConsoleColor.text(('>'), Color.BOLD))
@@ -271,7 +284,7 @@ while GAME_OVER == False:
                     # set the current room to the new room
                     currentRoom = rooms[currentRoom][move[1]]
                     clearScreen()
-                    print("You are now in the "+currentRoom+"!")
+                    print(ConsoleColor.text((playername+" is in the "+currentRoom+"!"), Color.BOLD))
                     input("<Press enter to continue>")
                     clearScreen()
                 # there is no door (link) to the new room
@@ -279,9 +292,6 @@ while GAME_OVER == False:
                     print("YOU CAN'T GO THAT WAY!")
                     input("<Press enter to try again>")
                     clearScreen()
-            # else:
-            #     input("<ERROR> Press enter to try again!")
-            #     continue
 
 
             # if they type 'get' first
@@ -305,15 +315,14 @@ while GAME_OVER == False:
             ## Define how a player can win
             if currentRoom == 'Kitchen' and 'poison ivy leaf' in inventory and 'dead bat' in inventory and 'silver coin' in inventory and 'matches' in inventory:
                 EndingText()
-                input("<Press enter to Exit>")
+                input("<Press enter to continue>")
                 clearScreen()
                 EndingImage()
                 input("<Press enter to continue>")
                 clearScreen()
                 break
     elif mainmenuoptionselected == 'QUIT':
-        print("THANKS FOR PLAYING!")
-        input()
+        print_center(ConsoleColor.text("THANKS FOR PLAYING!", Color.BOLD))
         break
 
     else:
