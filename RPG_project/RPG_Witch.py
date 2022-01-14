@@ -23,6 +23,7 @@ def DisplayGameLogo():
 
         print(ConsoleColor.text(("*" * borderWidth).center(CONSOLE_WIDTH), Color.RED))
 
+
 def EndingImage():
     with open("EndingImage.txt") as file:
         data= file.read().splitlines()
@@ -43,6 +44,7 @@ def showInstructions():
     input("Press Enter to continue!")
     clearScreen()
 
+
 def showStatus():
     # print the player's current status
     print(ConsoleColor.text(("+--------------------------------+"), Color.RED))
@@ -53,6 +55,7 @@ def showStatus():
     if "item" in rooms[currentRoom]:
         print(ConsoleColor.text(('You see a ' + rooms[currentRoom]['item']), Color.BOLD))
     print(ConsoleColor.text(("+--------------------------------+"), Color.RED))
+
 
 # Shows next possible move options
 def nextMove():
@@ -85,6 +88,8 @@ def typingPrint(text):
         sys.stdout.write(char)
         sys.stdout.flush()
         sleep(0.05)
+
+
 #This is for clearing the screen after input
 def clearScreen():
     if sys.platform == "win32":
@@ -93,8 +98,8 @@ def clearScreen():
         os.system('clear')
 
 mylist=['Living Room', 'Dining Room' , 'Garden' , 'Attic']
-ingredients=['Fur of a Bat','Something Silver','Leaf of Poison Ivy Plant']
-# RandomRoom= random.choice(mylist)
+
+
 def Witch():
     global currentRoom
     global RandomRoom
@@ -114,8 +119,6 @@ the Witch drags you away!\n"""), Color.BRIGHT_RED))
             input("\n<You open your eyes and see the basement>")
             clearScreen()
             # continue
-
-
         else:
             break
 
@@ -135,7 +138,7 @@ def getinput():
     playerinput = input("> ").upper()
     return playerinput
 
-# if __name__ == "__main--":
+
 CONSOLE_WIDTH= os.get_terminal_size().columns
 GAME_OVER = False
 main_menu_options = ["PLAY", "QUIT"]
